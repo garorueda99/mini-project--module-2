@@ -241,9 +241,8 @@ function submit(e) {
     PASSWORD2.classList.add("buttonWarning");
     WARNING.innerText = `Your password didn't match! Please provide the same password in each field`;
   } else {
-    DIVWRAPPER.style.display = "none";
-    TITLE.innerText = "The form has been submitted.";
-    TITLE.style.textAlign = "center";
+    window.alert("The form has been submitted.");
+    FORM.reset();
   }
 }
 
