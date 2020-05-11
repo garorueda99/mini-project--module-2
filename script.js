@@ -20,6 +20,7 @@ FORM.appendChild(TITLE);
 const DIVWRAPPER = document.createElement("div");
 // DIVWRAPPER.style.border = "2px solid green";
 DIVWRAPPER.style.width = "88%";
+DIVWRAPPER.autofocus = true;
 FORM.appendChild(DIVWRAPPER);
 
 const FIELDWRAPPER1 = document.createElement("div");
@@ -38,6 +39,7 @@ INPUTNAME.type = "text";
 INPUTNAME.id = "fullName";
 INPUTNAME.classList = "button";
 INPUTNAME.required = true;
+INPUTNAME.autofocus = true;
 INPUTNAME.style.width = INPUTWIDTH;
 FIELDWRAPPER1.appendChild(INPUTNAME);
 
@@ -134,6 +136,7 @@ PASSWORD2.type = "password";
 PASSWORD2.id = "password2";
 PASSWORD2.classList = "button";
 PASSWORD2.required = true;
+PASSWORD2.pattern = ".{10,}";
 PASSWORD2.style.width = INPUTWIDTH;
 FIELDWRAPPER6.appendChild(PASSWORD2);
 
@@ -197,8 +200,7 @@ FIELDWRAPPER8.appendChild(SUBMITBTN);
 SUBMITBTN.addEventListener("click", submit);
 
 function submit(e) {
-  e.preventDefault();
-  clearErrors();
+  console.log(e);
   if (!CHECK.checked) {
     // FIELDWRAPPER7.style.border = "2p'12x solid pink";
     window.alert("Before continue, the user need to agree to the terms.");
@@ -212,6 +214,7 @@ function submit(e) {
   ) {
   } else if (PASSWORD.value.length < 10) {
     FIELDWRAPPER7.style.marginBottom = "12px";
+    FIELDWRAPPER10.style.display = "block";
     FIELDWRAPPER10.style.width = "100%";
     FIELDWRAPPER10.style.textAlign = "center";
     FIELDWRAPPER10.style.backgroundColor = "pink";
@@ -226,8 +229,10 @@ function submit(e) {
     WARNING.innerText =
       "Your password is too short! Please provide a password that is at least 10 characters long.";
   } else if (PASSWORD.value != PASSWORD2.value) {
+    e.preventDefault();
     PASSWORD.classList.remove("buttonWarning");
     FIELDWRAPPER7.style.marginBottom = "12px";
+    FIELDWRAPPER10.style.display = "block";
     FIELDWRAPPER10.style.width = "100%";
     FIELDWRAPPER10.style.textAlign = "center";
     FIELDWRAPPER10.style.backgroundColor = "pink";
@@ -243,9 +248,8 @@ function submit(e) {
   } else {
     window.alert("The form has been submitted.");
     FORM.reset();
+    PASSWORD2.classList.remove("buttonWarning");
+    WARNING.innerText = "";
+    FIELDWRAPPER10.style.display = "none";
   }
-}
-
-function clearErrors() {
-  // PASSWORD.classList.remove(buttonWarning);
 }
