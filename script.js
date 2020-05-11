@@ -1,3 +1,17 @@
+const PWDLIST = [
+  "Canada",
+  "Covid",
+  "Laval",
+  "Concordia",
+  "Royal",
+  "Casino",
+  "Wallpaper",
+  "Rome",
+  "China",
+  "Sex",
+  "Salmon",
+  "Toscana",
+];
 const FORM = document.createElement("form");
 const INPUTWIDTH = "60%";
 FORM.style.backgroundColor = "white";
@@ -219,15 +233,18 @@ function submit(e) {
     FIELDWRAPPER10.style.textAlign = "center";
     FIELDWRAPPER10.style.backgroundColor = "pink";
     FIELDWRAPPER10.style.marginBottom = "8px";
-    FIELDWRAPPER10.style.height = "3rem";
+    FIELDWRAPPER10.style.height = "4rem";
     FIELDWRAPPER10.style.display = "flex";
     FIELDWRAPPER10.style.alignItems = "center";
     FIELDWRAPPER10.style.justifyContent = "center";
     FIELDWRAPPER10.style.borderRadius = "6px";
     FIELDWRAPPER10.style.marginBottom = "48px";
     PASSWORD.classList.add("buttonWarning");
-    WARNING.innerText =
-      "Your password is too short! Please provide a password that is at least 10 characters long.";
+    WARNING.innerText = `Your password is too short! Please provide a password that is at least 10 characters long.\nWhat about ${
+      PWDLIST[Math.floor(Math.random() * 11)]
+    }-${PWDLIST[Math.floor(Math.random() * 11)]}-${
+      Math.floor(Math.random() * 1000) + 1000
+    }`;
   } else if (PASSWORD.value != PASSWORD2.value) {
     e.preventDefault();
     PASSWORD.classList.remove("buttonWarning");
